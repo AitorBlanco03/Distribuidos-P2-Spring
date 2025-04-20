@@ -22,6 +22,6 @@ public class IndexController {
      */
     @GetMapping("/")
     public String showMainPage() {
-        return "item_list";
+        return "index";
     }
 }
