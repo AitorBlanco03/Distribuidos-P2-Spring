@@ -51,16 +51,6 @@
                 </svg>
             </button>
         </div>
-
-        <!-- Menú desplegable para la navegación entre páginas para dispositivos móviles. -->
-        <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-200">
-            <nav class="flex flex-col px-4 py-4 space-y-2 text-gray-700 text-base font-medium">
-                <a href="#" class="text-indigo-600">Inicio</a>
-                <a href="#" class="hover:text-indigo-600">Pokédex</a>
-                <a href="#" class="hover:text-indigo-600">Objetos</a>
-                <a href="#" class="hover:text-indigo-600">Movimientos</a>
-            </nav>
-        </div>
     </header>
 
 <!-- Sección principal de la página con el mensaje de bienvenida a la PokeWiki. -->
@@ -75,8 +65,5 @@
         </p>
     </div>
 </section>
-
-<!-- Cargamos el modulo JS para mostrar/ocultar el menú de navegación de dispositivos móviles. -->
-<script th:src="@{js/mobileNavToggle.js}"></script>
 </body>
 </html>

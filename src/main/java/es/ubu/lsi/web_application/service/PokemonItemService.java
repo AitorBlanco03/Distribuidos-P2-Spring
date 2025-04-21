@@ -19,7 +19,7 @@ import java.util.List;
 @Service
 public class PokemonItemService {
 
-    // Instanciamos dos objetos para procesar las solicitudes HTTP y objetos/respuestas JSON.
+    // Instanciamos los objetos para procesar las solicitudes HTTP y objetos/respuestas JSON.
     private final RestTemplate restTemplate = new RestTemplate();
     private final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -38,7 +38,7 @@ public class PokemonItemService {
             String response = restTemplate.getForObject(API_URL, String.class);
             JsonNode responseJSON = objectMapper.readTree(response);
 
-            // Iteramos sobre la respuesta obtenida y, extraemos cada objetos y sus características.
+            // Iteramos sobre la respuesta obtenida y, extraemos cada objeto y sus características.
             for (JsonNode responseItem : responseJSON) {
                 String name = responseItem.get("name").asText();
                 String category = responseItem.get("category").asText();
@@ -48,7 +48,10 @@ public class PokemonItemService {
                 items.add(new PokemonItemDTO(name, category, effect));
             }
         } catch (Exception e) {
-            System.out.println("Error al realizar la petición a la API y/o procesar la respuesta obtenida.");
+            System.out.println("Error al obtener la información de los objetos desde la API.");
+
+            // Registramos un objeto desconocido para informar del error.
+            items.add(new PokemonItemDTO("???", "???", "???"));
         }
 
         // Devolvemos los objetos junto a sus características obtenidas.

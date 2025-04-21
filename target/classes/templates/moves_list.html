@@ -2,11 +2,11 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 
 <!--
-    Archivo que define la estructura y el diseño de la página responsable
-    de representar los movimientos de los Pokémons en forma tabular (o de tabla).
+    Archivo que define la estructura y el diseño de la página responsable de
+    representar los movimientos de los Pokémons en forma tabular (o de tabla).
 
     - Autor: Aitor Blanco Fernández, abf1005@alu.ubu.es
-    - Versión: 1.0.0, 19 de Abril de 2025.
+    - Versión: 1.1.0, 20 de Abril de 2025.
 -->
 
 <head>
@@ -20,17 +20,17 @@
 
 <body class="bg-gray-100 font-sans">
 
-    <!-- Definimos un NavBar para navegar entre las diferentes páginas. -->
+    <!-- Definimos el NavBar para navegar entre las distintas páginas de nuestra web. -->
     <header class="bg-white shadow-md fixed top-0 left-0 w-full z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
 
             <!-- Definimos el nombre de nuestra aplicación web dentro del NavBar. -->
             <div class="flex items-center space-x-2">
-                <span class="text-indigo-600 font-extrabold text-xl">PokeWiki</span>
+                <space class="text-indigo-600 font-extrabold text-xl">PokeWiki</space>
             </div>
 
-            <!-- Definimos el menú de navegación de la página con los enlaces al resto de páginas. -->
-            <nav class="hidden md:flex space-x-8 text-gray-700 text-sm font-semidbold">
+            <!-- Definimos el menú de navegación con enlaces al resto de páginas. -->
+            <nav class="hidden md:flex space-x-8 text-gray-700 text-sm font-semibold">
                 <a href="#" class="hover:text-indigo-600 transition">Inicio</a>
                 <a href="#" class="hover:text-indigo-600 transition">Pokédex</a>
                 <a href="#" class="hover:text-indigo-600 transition">Objetos</a>
@@ -50,72 +50,48 @@
                           d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
             </button>
-
-            <!-- Menú desplegable para la navegación entre páginas para dispositivos móviles. -->
-            <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-200">
-                <nav class="flex flex-col px-4 py-4 space-y-2 text-gray-700 text-base font-medium">
-                    <a href="#" class="hover:text-indigo-600">Inicio</a>
-                    <a href="#" class="hover:text-indigo-600">Pokédex</a>
-                    <a href="#" class="hover:text-indigo-600">Objetos</a>
-                    <a href="#" class="text-indigo-600">Movimientos</a>
-                </nav>
-            </div>
         </div>
     </header>
 
-        <!-- Definimos el contenido de la página. -->
-        <main class="pt-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-            <!-- Título y descripción de la página. -->
-            <h1 class="text-3xl font-bold text-indigo-600 mb-6 text-center">Lista de Movimientos Pokémon</h1>
-            <p class="text-center text-gray-600 mb-8">
-                Esta es una lista de <em>todos los movimientos Pokémon</em> de todas las generaciones del
-                universo Pokémon.
-            </p>
+    <!-- Definimos el contenido de la página, en este caso será una tabla con diferentes movimientos disponibles. -->
+    <main class="pt-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <!-- Definimos el título junto a una breve descripción de la página. -->
+        <h1 class="text-3xl font-bold text-indigo-600 mb-6 text-center">Lista de Movimientos Pokémon</h1>
+        <p class="text-center text-gray-600 mb-8">
+            Esta es una lista de <em>todos los movimientos Pokémons</em> disponibles dentro del universo de Pokémon.
+        </p>
 
-            <!-- Tabla con los diferentes movimientos de los Pokémons. -->
-            <div class="overflow-x-auto shadow-md rounded-lg">
-                <table class="min-w-full bg-white text-sm text-left text-gray-700">
-                    <!-- Definimos los nombres de las columnas de la tabla. -->
-                    <thead class="bg-indigo-200 text-sm uppercase text-gray-600">
-                        <tr>
-                            <th class="px-4 py-3">Nombre</th>
-                            <th class="px-4 py-3">Tipo</th>
-                            <th class="px-4 py-3">Cat.</th>
-                            <th class="px-4 py-3">Potencia</th>
-                            <th class="px-4 py-3">Prec.</th>
-                            <th class="px-4 py-3">PP</th>
-                            <th class="px-4 py-3">Efecto</th>
-                            <th class="px-4 py-3">Prob. (%)</th>
-                        </tr>
-                    </thead>
-                    <!-- Definimos el contenido de la tabla. -->
-                    <tbody>
-                        <tr class="border-t hover:bg-indigo-50">
-                            <td class="px-4 py-2 text-gray-600 font-semibold">Frío Polar</td>
-                            <td class="px-4 py-2">HIELO</td>
-                            <td class="px-4 py-2">ESPECIAL</td>
-                            <td class="px-4 py-2">---</td>
-                            <td class="px-4 py-2">30</td>
-                            <td class="px-4 py-2">5</td>
-                            <td class="px-4 py-2">KO de un solo golpe, si acierta</td>
-                            <td class="px-4 py-2">---</td>
-                        </tr>
-                        <tr class="border-t hover:bg-indigo-50">
-                            <td class="px-4 py-2 text-gray-600 font-semibold">Taladro</td>
-                            <td class="px-4 py-2">NORMAL</td>
-                            <td class="px-4 py-2">FÍSICO</td>
-                            <td class="px-4 py-2">---</td>
-                            <td class="px-4 py-2">30</td>
-                            <td class="px-4 py-2">5</td>
-                            <td class="px-4 py-2">KO de un solo golpe, si acierta</td>
-                            <td class="px-4 py-2">---</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </main>
+        <!-- Definimos la tabla de movimientos como columna su información y características. -->
+        <div class="overflow-x-auto shadow-md rounded-lg">
+            <table class="min-w-full bg-white text-sm text-left text-gray-700">
 
-    <!-- Cargamos el modulo JS para mostrar/ocultar el menú de navegación de dispositivos móviles. -->
-    <script th:src="@{js/mobileNavToggle.js}"></script>
+                <!-- Definimos los nombres y campos de las columnas de la tabla. -->
+                <thead class="bg-indigo-200 text-sm uppercase text-gray-600">
+                    <tr>
+                        <th class="px-4 py-3">Nombre</th>
+                        <th class="px-4 py-3">Tipo</th>
+                        <th class="px-4 py-3">Categoria</th>
+                        <th class="px-4 py-3">Potencia</th>
+                        <th class="px-4 py-3">Precisión</th>
+                        <th class="px-4 py-3">PP</th>
+                        <th class="px-4 py-3">Efecto</th>
+                    </tr>
+                </thead>
+
+                <!-- Definimos el contenido de la tabla. -->
+                <tbody>
+                <tr th:each="move: ${moves}" class="border-t hover:bg-indigo-50">
+                    <td class="px-4 py-2 text-gray-600 font-semibold" th:text="${move.name}"></td>
+                    <td class="px-4 py-2" th:text="${move.type}"></td>
+                    <td class="px-4 py-2" th:text="${move.category}"></td>
+                    <td class="px-4 py-2" th:text="${move.power}"></td>
+                    <td class="px-4 py-2" th:text="${move.accuracy}"></td>
+                    <td class="px-4 py-2" th:text="${move.pp}"></td>
+                    <td class="px-4 py-2" th:text="${move.effect}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
 </body>
 </html>
