@@ -31,10 +31,10 @@
 
             <!-- Definimos el menú de navegación con enlaces al resto de páginas. -->
             <nav class="hidden md:flex space-x-8 text-gray-700 text-sm font-semibold">
-                <a href="#" class="hover:text-indigo-600 transition">Inicio</a>
-                <a href="#" class="hover:text-indigo-600 transition">Pokédex</a>
-                <a href="#" class="hover:text-indigo-600 transition">Objetos</a>
-                <a href="#" class="text-indigo-600">Movimientos</a>
+                <a th:href="@{home}" class="hover:text-indigo-600 transition">Inicio</a>
+                <a th:href="@{pokemons}" class="hover:text-indigo-600 transition">Pokédex</a>
+                <a th:href="@{items}" class="hover:text-indigo-600 transition">Objetos</a>
+                <a th:href="@{moves}" class="text-indigo-600">Movimientos</a>
             </nav>
 
             <!-- Definimos el ícono del usuario dentro del NavBar. -->

@@ -25,16 +25,16 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
 
             <!-- Definimos el nombre de nuestra aplicación web dentro del NavBar. -->
-            <div class="flex itens-center space-x-2">
+            <div class="flex items-center space-x-2">
                 <span class="text-indigo-600 font-extrabold text-xl">PokeWiki</span>
             </div>
 
             <!-- Definimos el menú de navegación de la página con los enlaces al resto de páginas. -->
             <nav class="hidden md:flex space-x-8 text-gray-700 text-sm font-semibold">
-                <a href="#" class="hover:text-indigo-600 transition">Inicio</a>
-                <a href="#" class="hover:text-indigo-600 transition">Pokédex</a>
-                <a href="#" class="text-indigo-600">Objetos</a>
-                <a href="#" class="hover:text-indigo-600 transition">Movimientos</a>
+                <a th:href="@{home}" class="hover:text-indigo-600 transition">Inicio</a>
+                <a th:href="@{pokemons}" class="hover:text-indigo-600 transition">Pokédex</a>
+                <a th:href="@{items}" class="text-indigo-600">Objetos</a>
+                <a th:href="@{moves}" class="hover:text-indigo-600 transition">Movimientos</a>
             </nav>
 
             <!-- Definimos el ícono del usuario dentro del NavBar. -->
