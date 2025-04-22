@@ -18,7 +18,7 @@ public class IndexController {
      * Muestra por pantalla la página principal de nuestra aplicación
      * web.
      *
-     * @return el nombre de la página HTML que se debe de rendizar.
+     * @return el nombre de la página HTML que se debe de renderizar.
      */
     @GetMapping("/")
     public String showMainPage() {
