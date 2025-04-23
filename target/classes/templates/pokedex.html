@@ -31,15 +31,15 @@
 
             <!-- Definimos el menú de navegación de la página con los enlaces al resto de páginas. -->
             <nav class="hidden md:flex space-x-8 text-gray-700 text-sm font-semibold">
-                <a th:href="@{home}" class="hover:text-indigo-600 transition">Inicio</a>
-                <a th:href="@{pokemons}" class="text-indigo-600">Pokédex</a>
-                <a th:href="@{items}" class="hover:text-indigo-600 transition">Objetos</a>
-                <a th:href="@{moves}" class="hover:text-indigo-600 transition">Movimientos</a>
+                <a th:href="@{/home}" class="hover:text-indigo-600 transition">Inicio</a>
+                <a th:href="@{/pokemons}" class="text-indigo-600">Pokédex</a>
+                <a th:href="@{/items}" class="hover:text-indigo-600 transition">Objetos</a>
+                <a th:href="@{/moves}" class="hover:text-indigo-600 transition">Movimientos</a>
             </nav>
 
             <!-- Definimos el ícono del usuario dentro del NavBar. -->
             <div class="hidden md:flex items-center">
-                <img th:src="@{images/user-icon.png}" alt="user-icon"
+                <img th:src="@{/images/user-icon.png}" alt="user-icon"
                      class="w-9 h-9 rounded-full border-2 border-indigo-500">
             </div>
 
@@ -73,24 +73,20 @@
 
                 <!-- Campo para poner el identificador del Pokémon. -->
                 <p class="text-gray-600 text-sm text-left mb-1">
-                    <span th:text="${'#' + #strings.format('%04d', pokemon.id)}">#0001</span>
+                    <span th:text="${pokemon.id}">#0001</span>
                 </p>
 
                 <!-- Campo para poner el nombre del Pokémon. -->
                 <h2 class="text-xl font-bold text-center capitalize mb-1" th:text="${pokemon.name}">Nombre</h2>
-
-                <!-- Campo para poner los tipos del Pokémon. -->
-                <p class="text-sm text-gray-700 text-center capitalize">
-                    <span th:text="${#strings.listJoin(pokemon.types, ' - ')}">Tipo 1 - Tipo2</span>
-                </p>
             </div>
         </div>
 
         <!-- Definimos dos controladores para ir a la página anterior o la pagina siguiente. -->
         <div class="flex justify-end space-x-3">
             <!-- Controlador/Botón para ir a la página anterior. -->
-            <a href="#" class="flex items-center justify-center px-3 h-8 text-sm font-medium text-indigo-300
-                               bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-indigo-600">
+            <a th:if="${previousPage != null}" th:href="@{/pokemons/previous}" class="flex items-center justify-center
+                               px-3 h-8 text-sm font-medium text-indigo-300 bg-white border border-gray-300 rounded-lg
+                               hover:bg-gray-100 hover:text-indigo-600">
                 <svg class="w-3 h-3 me-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                      fill="none" viewBox="0 0 14 10">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -100,8 +96,9 @@
             </a>
 
             <!-- Controlador/Botón para ir a la página siguiente. -->
-            <a href="#" class="flex items-center justify-center px-3 h-8 text-sm font-medium text-indigo-300
-                               bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-indigo-600">
+            <a th:if="${nextPage != null}" th:href="@{/pokemons/next}" class="flex items-center justify-center px-3 h-8
+                               text-sm font-medium text-indigo-300 bg-white border border-gray-300 rounded-lg
+                               hover:bg-gray-100 hover:text-indigo-600">
                 Siguiente
                 <svg class="w-3 h-3 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                      fill="none" viewBox="0 0 14 10">
