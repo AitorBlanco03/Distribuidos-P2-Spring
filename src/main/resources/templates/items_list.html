@@ -6,7 +6,7 @@
     de representar los objetos de los Pokémons de forma tabular (o de tabla).
 
     - Autor: Aitor Blanco Fernández, abf1005@alu.ubu.es
-    - Versión: 1.1.0, 20 de Abril de 2025.
+    - Versión: 1.2.0, 23 de Abril de 2025.
 -->
 
 <head>
@@ -82,6 +82,31 @@
                 </tbody>
             </table>
         </div>
+
+            <!-- Definimos dos controladores para ir a la página anterior o la página siguiente. -->
+            <div class="flex justify-end space-x-3 mt-4">
+                <!-- Controlador/Botón para ir a la página anterior. -->
+                <a href="#" class="flex items-center justify-center px-3 h-8 text-sm font-medium text-indigo-300
+                               bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-indigo-600">
+                    <svg class="w-3 h-3 me-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                         fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M13 5H1m0 0 4 4M1 5l4-4" />
+                    </svg>
+                    Anterior
+                </a>
+
+                <!-- Controlador/Botón para ir a la página siguiente. -->
+                <a href="#" class="flex items-center justify-center px-3 h-8 text-sm font-medium text-indigo-300
+                               bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-indigo-600">
+                    Siguiente
+                    <svg class="w-3 h-3 ms-2 rtl-rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                         fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M1 5h12m0 0L9 1m4 4L9 9" />
+                    </svg>
+                </a>
+            </div>
     </main>
 </body>
 </html>

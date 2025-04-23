@@ -6,7 +6,7 @@
     representar los movimientos de los Pokémons en forma tabular (o de tabla).
 
     - Autor: Aitor Blanco Fernández, abf1005@alu.ubu.es
-    - Versión: 1.1.0, 20 de Abril de 2025.
+    - Versión: 1.2.0, 20 de Abril de 2025.
 -->
 
 <head>
@@ -61,6 +61,33 @@
             Esta es una lista de <em>todos los movimientos Pokémons</em> disponibles dentro del universo de Pokémon.
         </p>
 
+        <!-- Definimos una leyenda para la categoria de los movimientos. -->
+        <div class="bg-white p-4 rounded-lg shadow-md mb-6">
+            <h2 class="text-lg font-semibold text-indigo-500 mb-3">Leyenda:</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 text-md text-gray-700">
+                <!-- Movimiento de clase físico. -->
+                <div class="flex items-center space-x-2">
+                    <img src="https://images.wikidexcdn.net/mwuploads/wikidex/5/54/latest/20230130142459/Clase_f%C3%ADsico_LGPE.png"
+                         alt="Movimiento - Clase Físico" class="w-12 h-6">
+                    <span>Clase Físico</span>
+                </div>
+
+                <!-- Movimiento de clase especial. -->
+                <div class="flex items-center space-x-2">
+                    <img src="https://images.wikidexcdn.net/mwuploads/wikidex/7/7e/latest/20230130141349/Clase_especial_LGPE.png"
+                         alt="Movimiento - Clase Especial" class="w-12 h-6">
+                    <span>Clase Especial</span>
+                </div>
+
+                <!-- Movimiento de clase estado. -->
+                <div class="flex items-center space-x-2">
+                    <img src="https://images.wikidexcdn.net/mwuploads/wikidex/6/63/latest/20230130142318/Clase_estado_LGPE.png"
+                         alt="Movimiento - Clase Estado" class="w-12 h-6">
+                    <span>Clase Estado</span>
+                </div>
+            </div>
+        </div>
+
         <!-- Definimos la tabla de movimientos como columna su información y características. -->
         <div class="overflow-x-auto shadow-md rounded-lg">
             <table class="min-w-full bg-white text-sm text-left text-gray-700">
@@ -82,15 +109,44 @@
                 <tbody>
                 <tr th:each="move: ${moves}" class="border-t hover:bg-indigo-50">
                     <td class="px-4 py-2 text-gray-600 font-semibold" th:text="${move.name}"></td>
-                    <td class="px-4 py-2" th:text="${move.type}"></td>
-                    <td class="px-4 py-2" th:text="${move.category}"></td>
-                    <td class="px-4 py-2" th:text="${move.power}"></td>
-                    <td class="px-4 py-2" th:text="${move.accuracy}"></td>
-                    <td class="px-4 py-2" th:text="${move.pp}"></td>
-                    <td class="px-4 py-2" th:text="${move.effect}"></td>
+                    <td class="px-4 py-2">
+                        <img th:src="@{${move.type}}" th:alt="'Tipo - ' + ${move.name}">
+                    </td>
+                    <td class="px-4 py-2">
+                        <img th:src="@{${move.category}}" th:alt="'Categoria - ' + ${move.name}">
+                    </td>
+                    <td class="px-4 py-2 text-center" th:text="${move.power}"></td>
+                    <td class="px-4 py-2 text-center" th:text="${move.accuracy}"></td>
+                    <td class="px-4 py-2 text-center" th:text="${move.pp}"></td>
+                    <td class="px-4 py-2 text-left" th:text="${move.effect}"></td>
                 </tr>
                 </tbody>
             </table>
+        </div>
+
+        <!-- Definimos dos controladores para ir a la página anterior o la página siguiente. -->
+        <div class="flex justify-end space-x-3 mt-4">
+            <!-- Controlador/Botón para ir a la página anterior. -->
+            <a href="#" class="flex items-center justify-center px-3 h-8 text-sm font-medium text-indigo-300
+                               bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-indigo-600">
+                <svg class="w-3 h-3 me-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                     fill="none" viewBox="0 0 14 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M13 5H1m0 0 4 4M1 5l4-4" />
+                </svg>
+                Anterior
+            </a>
+
+            <!-- Controlador/Botón para ir a la página siguiente. -->
+            <a href="#" class="flex items-center justify-center px-3 h-8 text-sm font-medium text-indigo-300
+                               bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-indigo-600">
+                Siguiente
+                <svg class="w-3 h-3 ms-2 rtl-rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                     fill="none" viewBox="0 0 14 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M1 5h12m0 0L9 1m4 4L9 9" />
+                </svg>
+            </a>
         </div>
     </main>
 </body>

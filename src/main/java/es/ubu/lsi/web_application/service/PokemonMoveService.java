@@ -57,7 +57,7 @@ public class PokemonMoveService {
             System.out.println("Error al obtener la información de los movimientos desde la API.");
 
             // Registramos un objeto desconocido para informar del error.
-            PokemonMoveDTO moveDTO = new PokemonMoveDTO("???", "???", "???", "???", "???", "???", "???");
+            PokemonMoveDTO moveDTO = new PokemonMoveDTO("???", "", "", "???", "???", "???", "???");
             moves.add(moveDTO);
         }
 

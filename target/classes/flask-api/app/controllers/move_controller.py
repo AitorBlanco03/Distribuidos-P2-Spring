@@ -4,7 +4,7 @@ movimientos Pokémon disponibles dentro del universo de Pokémon desde
 la PokeAPI.
 
     - Autor: Aitor Blanco Fernández, abf1005@alu.ubu.es
-    - Versión: 1.0.0, 21 de Abril de 2025.
+    - Versión: 1.1.0, 21 de Abril de 2025.
 """
 
 from flask import Response, jsonify
@@ -70,8 +70,8 @@ def get_moves():
             # Registramos la información obtenida de los movimientos desde la PokeAPI.
             moves.append({
                 'name': name,
-                'type': type.capitalize(),
-                'category': category.capitalize(),
+                'type': format_move_type(type),
+                'category': format_move_category(category),
                 'power': format_move_power(power),
                 'accuracy': format_move_accuracy(accuracy),
                 'pp': format_move_pp(pp),
@@ -87,8 +87,8 @@ def get_moves():
         # mostrará un movimiento de tipo desconocido.
         return jsonify({
             'name': '???',
-            'type': '???',
-            'category': '???',
+            'type': '',
+            'category': '',
             'power': '???',
             'accuracy': '???',
             'pp': '???',
@@ -142,3 +142,66 @@ def format_move_pp(move_pp):
     PP del movimiento procesado y formateado para su visualización dentro de la página y tabla.
     """
     return str(move_pp) if move_pp is not None else "---"
+
+def format_move_category(move_category):
+    """
+    Procesa la categoria del movimiento recibida desde la PokeAPI y obtiene la URL asociada
+    a su representación dentro de la tabla.
+
+    Parámetros:
+    ------------
+    move_category: str
+        Categoria del movimiento recibido desde la PokeAPI.
+
+    Returns:
+    ---------
+    URL de la representación de la categoria del movimiento dentro de la tabla.
+    """
+    # Definimos la URL asociada a cada una de las categorías.
+    move_categories = {
+        "physical": "https://images.wikidexcdn.net/mwuploads/wikidex/5/54/latest/20230130142459/Clase_f%C3%ADsico_LGPE.png",
+        "special": "https://images.wikidexcdn.net/mwuploads/wikidex/7/7e/latest/20230130141349/Clase_especial_LGPE.png",
+        "status": "https://images.wikidexcdn.net/mwuploads/wikidex/6/63/latest/20230130142318/Clase_estado_LGPE.png"
+    }
+
+    # Devolvemos la representación de esa categoría dentro de la tabla.
+    return move_categories.get(move_category, '')
+
+def format_move_type(move_type):
+    """
+    Procesa el tipo del movimiento recibido desde la PokeAPI y obtiene la URL asociada
+    a su representación dentro de la tabla.
+
+    Parámetros:
+    ------------
+    move_type: str
+        Tipo del movimiento recibido desde la PokeAPI.
+
+    Returns:
+    ---------
+    URL de la representación del tipo del movimiento dentro de la tabla.
+    """
+    # Definimos la URL asociada a cada uno de los tipos.
+    move_types = {
+        "steel": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/9/98/latest/20230108233610/Tipo_acero_EpEc.png/80px-Tipo_acero_EpEc.png",
+        "water": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/9/90/latest/20230109223300/Tipo_agua_EpEc.png/80px-Tipo_agua_EpEc.png",
+        "bug": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/a/a1/latest/20230109223320/Tipo_bicho_EpEc.png/80px-Tipo_bicho_EpEc.png",
+        "dragon": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/e/e3/latest/20230109223334/Tipo_drag%C3%B3n_EpEc.png/80px-Tipo_drag%C3%B3n_EpEc.png",
+        "electric": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/3/3c/latest/20230109223352/Tipo_el%C3%A9ctrico_EpEc.png/80px-Tipo_el%C3%A9ctrico_EpEc.png",
+        "ghost": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/3/36/latest/20230109223409/Tipo_fantasma_EpEc.png/80px-Tipo_fantasma_EpEc.png",
+        "fire": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/e/ed/latest/20230109223425/Tipo_fuego_EpEc.png/80px-Tipo_fuego_EpEc.png",
+        "fairy": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/9/94/latest/20230109223445/Tipo_hada_EpEc.png/80px-Tipo_hada_EpEc.png",
+        "ice": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/f/fd/latest/20230109223459/Tipo_hielo_EpEc.png/80px-Tipo_hielo_EpEc.png",
+        "fighting": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/5/52/latest/20230109223516/Tipo_lucha_EpEc.png/80px-Tipo_lucha_EpEc.png",
+        "normal": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/a/a7/latest/20230109215235/Tipo_normal_EpEc.png/80px-Tipo_normal_EpEc.png",
+        "grass": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/1/1d/latest/20230109223536/Tipo_planta_EpEc.png/80px-Tipo_planta_EpEc.png",
+        "psychic": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/d/d7/latest/20230109223552/Tipo_ps%C3%ADquico_EpEc.png/80px-Tipo_ps%C3%ADquico_EpEc.png",
+        "rock": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/3/31/latest/20230109223608/Tipo_roca_EpEc.png/80px-Tipo_roca_EpEc.png",
+        "dark": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/0/01/latest/20230109223623/Tipo_siniestro_EpEc.png/80px-Tipo_siniestro_EpEc.png",
+        "ground": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/6/68/latest/20230109223637/Tipo_tierra_EpEc.png/80px-Tipo_tierra_EpEc.png",
+        "poison": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/3/3a/latest/20230109223652/Tipo_veneno_EpEc.png/80px-Tipo_veneno_EpEc.png",
+        "flying": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/9/92/latest/20230109223707/Tipo_volador_EpEc.png/80px-Tipo_volador_EpEc.png"
+    }
+
+    # Devolvemos la representación de ese tipo dentro de la tabla.
+    return move_types.get(move_type, '')
