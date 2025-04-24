@@ -11,6 +11,6 @@ from app import create_app
 # Creamos y configuramos la aplicación Flask que sirve como de base para nuestra API.
 app = create_app()
 
-# Iniciamos el servidor junto a la aplicación Flask en el puerto por defecto (5000).
+# Iniciamos el servidor junto a la aplicación Flask.
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port=5000)

@@ -21,7 +21,7 @@ def create_app():
     """
     # Creamos, inicializamos y configuramos la aplicación Flask.
     app = Flask(__name__)
-    app.config['DEBUG'] = True
+    # app.config['DEBUG'] = True
 
     # Registramos las diferentes rutas de la API que podrán a llegar a ser consumidas.
     register_routes(app)

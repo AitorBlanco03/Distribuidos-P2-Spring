@@ -31,7 +31,7 @@ public class PokemonMoveService {
      */
     public List<PokemonMoveDTO> getAllPokemonMoves() {
         // Definimos la URL de la API que vamos a consumir y una lista para almacenar los resultados obtenidos.
-        String API_URL = "http://localhost:5000/api/moves";
+        String API_URL = "http://flask-api:5000/api/moves";
         List<PokemonMoveDTO> moves = new ArrayList<>();
 
         try {
@@ -57,7 +57,7 @@ public class PokemonMoveService {
             System.out.println("Error al obtener la información de los movimientos desde la API.");
 
             // Registramos un objeto desconocido para informar del error.
-            PokemonMoveDTO moveDTO = new PokemonMoveDTO("???", "", "", "???", "???", "???", "???");
+            PokemonMoveDTO moveDTO = new PokemonMoveDTO(null, null, null, null, null, null, null);
             moves.add(moveDTO);
         }
 

@@ -1,0 +1,37 @@
+#
+# Docker Compose para poder ejecutar y gestionar Spring Boot y la API
+# dentro del Docker.
+#
+# Autor: Aitor Blanco Fernández, abf1005@alu.ubu.es
+# Versión: 1.0.0, 23 de Abril de 2025.
+#
+
+version: '3.8'
+
+services:
+
+  # Definimos un servicio para ejecutar y gestionar Spring Boot.
+  spring-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.spring
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+
+  # Definimos un servicio para ejecutar y gestionar la API.
+  flask-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.flask
+    ports:
+      - "5000:5000"
+    networks:
+      - app-network
+
+
+# Definimos una red para controlar y gestionar la comunicación entre ambos servicios.
+networks:
+  app-network:
+    driver: bridge

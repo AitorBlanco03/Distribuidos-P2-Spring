@@ -3,7 +3,7 @@ Define e implementa la lógica para obtener y procesar la información de
 todos los Pokémons en el universo Pokémon, organizados en forma de páginas.
 
     - Autor: Aitor Blanco Fernández, abf1005@alu.ubu.es
-    - Versión: 1.1.0, 22 de Abril de 2024.
+    - Versión: 1.1.0, 23 de Abril de 2024.
 """
 
 from flask import Response, jsonify

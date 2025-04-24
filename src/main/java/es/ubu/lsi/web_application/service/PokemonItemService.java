@@ -30,7 +30,7 @@ public class PokemonItemService {
      */
     public List<PokemonItemDTO> getAllPokemonItems() {
         // Definimos la URL de la API que vamos a consumir y una lista para almacenar los resultados.
-        String API_URL = "http://localhost:5000/api/items";
+        String API_URL = "http://flask-api:5000/api/items";
         List<PokemonItemDTO> items = new ArrayList<>();
 
         try {
@@ -51,7 +51,7 @@ public class PokemonItemService {
             System.out.println("Error al obtener la información de los objetos desde la API.");
 
             // Registramos un objeto desconocido para informar del error.
-            items.add(new PokemonItemDTO("???", "???", "???"));
+            items.add(new PokemonItemDTO(null, null, null));
         }
 
         // Devolvemos los objetos junto a sus características obtenidas.

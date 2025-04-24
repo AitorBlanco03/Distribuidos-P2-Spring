@@ -32,7 +32,7 @@ public class PokemonPageService {
      */
     public PokemonPageDTO getPokemonPage(int pageNumber) {
         // Inicializamos y definimos la URL de la API para obtener la página.
-        String API_URL = "http://localhost:5000/api/pokemons?page=" + pageNumber;
+        String API_URL = "http://flask-api:5000/api/pokemons?page=" + pageNumber;
 
         try {
             // Realizamos una petición a la API obtener esa página.

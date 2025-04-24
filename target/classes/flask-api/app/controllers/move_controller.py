@@ -4,7 +4,7 @@ movimientos Pokémon disponibles dentro del universo de Pokémon desde
 la PokeAPI.
 
     - Autor: Aitor Blanco Fernández, abf1005@alu.ubu.es
-    - Versión: 1.1.0, 21 de Abril de 2025.
+    - Versión: 1.1.0, 23 de Abril de 2025.
 """
 
 from flask import Response, jsonify
