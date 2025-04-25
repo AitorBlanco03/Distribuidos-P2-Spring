@@ -1,37 +1,53 @@
 #
-# Docker Compose para poder ejecutar y gestionar Spring Boot y la API
-# dentro del Docker.
+# Docker Compose para poder ejecutar y gestionar Spring Boot, la API y
+# la base de datos MySQL dentro del Docker.
 #
 # Autor: Aitor Blanco Fernández, abf1005@alu.ubu.es
-# Versión: 1.0.0, 23 de Abril de 2025.
+# Versión: 1.1.0, 25 de Abril de 2025.
 #
 
 version: '3.8'
-
 services:
 
-  # Definimos un servicio para ejecutar y gestionar Spring Boot.
+# Definimos un servicio para almacenar y gestionar la base de datos MySQL.
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-database
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: spring-database
+      MYSQL_USER: AitorBlanco
+      MYSQL_PASSWORD: AitorBlanco
+    ports:
+      - "3306:3306"
+    networks:
+      - app_network
+
+  # Definimos un servicio para iniciar y gestionar Spring Boot.
   spring-app:
     build:
       context: .
       dockerfile: Dockerfile.spring
+    container_name: spring-app
+    depends_on:
+      - mysql
     ports:
       - "8080:8080"
     networks:
-      - app-network
+      - app_network
 
-  # Definimos un servicio para ejecutar y gestionar la API.
+  # Definimos un servicio para iniciar y gestionar la API.
   flask-api:
     build:
       context: .
       dockerfile: Dockerfile.flask
+    container_name: flask-api
     ports:
       - "5000:5000"
     networks:
-      - app-network
+      - app_network
 
-
-# Definimos una red para controlar y gestionar la comunicación entre ambos servicios.
+# Creamos e inicializamos una red para gestionar la comunicación entre todos los elementos.
 networks:
-  app-network:
+  app_network:
     driver: bridge

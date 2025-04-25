@@ -36,7 +36,7 @@ public class PokemonInfoController {
      * @return Nombre de la página HTML que se debe de renderizar.
      */
     @GetMapping("/pokemons")
-    public String showPokedexPage(@RequestParam(defaultValue = "0") int pageNumber, ModelMap pokedexPage) {
+    public String showPokedexPage(@RequestParam(name = "pageNumber", defaultValue = "0") int pageNumber, ModelMap pokedexPage) {
         // Actualizamos el contador asociado a la página actual.
         currentPage = pageNumber;
 
