@@ -131,7 +131,11 @@
       </button>
 
       <!-- Definimos el mensaje de error. -->
-      <p th:text="${errorMessage}"></p>
+      <div th:if="${errorMessage}"
+           class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative text-md"
+           role="alert">
+        <span class="block sm:inline" th:text="${errorMessage}"></span>
+      </div>
     </div>
   </div>
 </body>
