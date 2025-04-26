@@ -87,8 +87,8 @@ def get_moves():
         # mostrará un movimiento de tipo desconocido.
         return jsonify({
             'name': '???',
-            'type': '',
-            'category': '',
+            'type': None,
+            'category': '???',
             'power': '???',
             'accuracy': '???',
             'pp': '???',

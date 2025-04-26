@@ -25,7 +25,7 @@ public class PokemonInfoController {
     private PokemonPageService pokemonPageService;
 
     // Contador interno encargado de controlar la página de la Pokédex que se desea renderizar.
-    int currentPage = 0;
+    int currentPage = 1;
 
     /**
      * Muestra por pantalla la página de con los Pokémons y la actualiza en función a
@@ -36,7 +36,7 @@ public class PokemonInfoController {
      * @return Nombre de la página HTML que se debe de renderizar.
      */
     @GetMapping("/pokemons")
-    public String showPokedexPage(@RequestParam(name = "pageNumber", defaultValue = "0") int pageNumber, ModelMap pokedexPage) {
+    public String showPokedexPage(@RequestParam(name = "pageNumber", defaultValue = "1") int pageNumber, ModelMap pokedexPage) {
         // Actualizamos el contador asociado a la página actual.
         currentPage = pageNumber;
 

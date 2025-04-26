@@ -3,7 +3,7 @@ Define e implementa la lógica para obtener y procesar la información de
 todos los Pokémons en el universo Pokémon, organizados en forma de páginas.
 
     - Autor: Aitor Blanco Fernández, abf1005@alu.ubu.es
-    - Versión: 1.1.0, 23 de Abril de 2024.
+    - Versión: 1.2.0, 23 de Abril de 2024.
 """
 
 from flask import Response, jsonify
@@ -12,38 +12,43 @@ import requests
 
 def get_pokemons(page):
     """
-    Busca, obtiene y procesa la información de Pokémons en forma de
-    páginas.
-
-    Parámetros:
-    ------------
-    page: int
-        Número de la página que se desea obtener.
-
-    Returns:
-    ---------
-    JSON con la información de los Pokémons asociados a la página que
-    se desea obtener.
+    Busca, procesa y obtiene toda la información de todos los Pokémons en
+    forma de página.
     """
-    # Calculamos el offset junto a la url de la API para obtener los Pokémon de la página actual.
+    # Calculamos la página máxima que permitiremos obtener.
     size = 20
-    offset = page * size
+    total_pokemons = 1025
+    max_page = (total_pokemons + size - 1) // size
+
+    # Calculamos el offset para obtener los Pokémon disponibles en la página.
+    offset = (page - 1) * size
+
+    # Si el offset supera los 1025 Pokémon permitidos, no mostraremos más información.
+    if page > max_page:
+        page_info = {
+            'previous': None,
+            'next': None,
+            'pokemons': []
+        }
+        response_data = json.dumps(page_info, ensure_ascii=False)
+        return Response(response_data, content_type='application/json; charset=utf-8')
+
+    # Obtenemos la URL de la PokeAPI para obtener la página solicitada con su información.
     url = f"https://pokeapi.co/api/v2/pokemon?limit={size}&offset={offset}"
 
     try:
-        # Realizamos una petición a la PokeAPI para obtener la información de la página actual.
+        # Realizamos una petición a la PokeAPI y procesamos su respuesta.
         response = requests.get(url)
-        # Procesamos la respuesta para obtener la información de la página actual.
         data = response.json()
 
-        # Obtenemos los detalles de la página actual sobre la respuesta obtenida.
+        # Obtenemos los detalles de la página solicitada sobre la respuesta obtenida.
         page_info = {
             'previous': data['previous'],
             'next': data['next'],
             'pokemons': []
         }
 
-        # Para Pokémon asociado a la página obtenemos su información y la guardamos.
+        # Para cada Pokemon de la página obtenemos su información.
         for pokemon in data['results']:
             pokemon_data = requests.get(pokemon['url']).json()
             pokemon_info = {
@@ -54,7 +59,7 @@ def get_pokemons(page):
             }
             page_info['pokemons'].append(pokemon_info)
 
-        # Procesamos la información obtenida en forma de JSON codificando su contenido en UTF-8.
+        # Procesamos la información obtenida y la devolvemos en forma de JSON codificando su contenido en UTF-8.
         response_data = json.dumps(page_info, ensure_ascii=False)
         return Response(response_data, content_type='application/json; charset=utf-8')
 
