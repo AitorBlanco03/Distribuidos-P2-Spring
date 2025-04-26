@@ -1,0 +1,35 @@
+#
+# Dockerfile para construir y ejecutar la aplicación de Spring Boot junto
+# a la página web que hemos diseñado.
+#
+# Autor: Aitor Blanco Fernández, abf1005@alu.ubu.es
+# Versión: 1.0.0, 23 de Abril de 2025.
+#
+
+# Definimos una imagen con Maven y Java 18 para construir la aplicación.
+FROM maven:3.8.5-openjdk-18 AS build
+
+# Establecemos un directorio de trabajo dentro del contenedor.
+WORKDIR /app
+
+# Copiamos el pom.xml y el código fuente de la aplicación dentro del contenedor.
+COPY pom.xml .
+COPY src ./src
+
+# Compilamos el proyecto y lo empaquetamos en forma de JAR (No ejecutaremos los tests, para hacer más rápido el proceso).
+RUN mvn clean package -DskipTests
+
+# Creamos una imagen para ejecutar el JAR de nuestra aplicación.
+FROM openjdk:18-jdk-alpine
+
+# Establecemos como directorio de trabajo en el contenedor.
+WORKDIR /app
+
+# Copiamos el JAR de nuestro proyecto dentro del directorio de trabajo.
+COPY --from=build /app/target/*.jar app.jar
+
+# Exponemos el puerto 8080 para poder acceder a la web desde fuera del contenedor de Docker.
+EXPOSE 8080
+
+# Definimos y establecemos el comando necesario para ejecutar la aplicación desde Docker.
+ENTRYPOINT ["java", "-jar", "app.jar"]

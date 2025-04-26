@@ -1,0 +1,28 @@
+#
+# Dockerfile para construir y ejecutar la API que hemos diseñado
+# con Python y Flask.
+#
+# Autor: Aitor Blanco Fernández, abf1005@alu.ubu.es
+# Versión: 1.0.0, 23 de Abril de 2025.
+#
+
+# Definimos una imagen con Python para poder ejecutar nuestra API en Flask.
+FROM python:3.10-slim
+
+# Establecemos el directorio de trabajo dentro del contenedor.
+WORKDIR /app
+
+# Copiamos el requierements.txt para instalar las dependencias necesarias para ejecutar la API y Flask.
+COPY src/main/resources/flask-api/requirements.txt /app/requirements.txt
+
+# Instalamos las dependencias necesarias para ejecutar la API y Flask.
+RUN pip install --no-cache-dir -r /app/requirements.txt
+
+# Copiamos el código fuente de nuestra API dentro del contenedor.
+COPY src/main/resources/flask-api /app
+
+# Exponemos el puerto 5000, donde nuestra API estará escuchando peticiones.
+EXPOSE 5000
+
+# Definimos el comando para ejecutar la API desde el contenedor de Docker.
+CMD ["python", "run.py"]

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<!--
+    Archivo que define la estructura y el diseño de la página para
+    iniciar sesión dentro de nuestra aplicación web.
+
+    - Autor: Aitor Blanco Fernández, abf1005@alu.ubu.es
+    - Versión: 1.1.0, 18 de Abril de 2025.
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokeWiki - Iniciar Sesión</title>
+
+    <!-- CDN para utilizar los estilos y diseños de Tailwind CSS sin necesidad de tenerlo instalado. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen flex flex-col md:flex-row">
+
+    <!-- Dividimos la página en dos mitades y en su mitad iquierda mostramos un fondo de color morado. -->
+    <div class="hidden md:block md:w-1/2 bg-gradient-to-r from-indigo-500 to-purple-600"></div>
+
+    <!-- En la otra mitad iniciamos y definimos el formulario para iniciar sesión dentro de la aplicación. -->
+    <div class="w-full md:w-1/2 bg-white flex item-center justify-center p-6 md:p-8">
+        <div class="w-full max-w-md space-y-6">
+
+            <!-- Definimos un encabezado donde situaremos el titulo y subtítulo de la página. -->
+            <div class="text-center">
+                <h2 class="text-2xl font-bold text-indigo-600">¡Bienvenido de nuevo!</h2>
+                <p class="text-sm text-gray-600">Inicia sesión en tu cuenta</p>
+            </div>
+
+            <!-- Definimos el formulario de inicio de sesión de nuestra aplicación. -->
+            <form class="space-y-6">
+
+                <!-- Definimos un campo para introducir el email del usuario. -->
+                <div class="relative">
+                    <input
+                        type="email" id="email" placeholder="" required
+                        class="peer w-full border border-gray-300 text-gray-900 rounded-md px-4 pt-6 pb-2 text-sm
+                               focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                    />
+                    <label
+                        for="email"
+                        class="absolute text-gray-500 text-sm left-4 top-1 transition-all
+                               peer-placeholder-show:top-4.5 peer-placeholder-shown:text-base
+                               peer-placeholder-shown:text-gray-400 peer-focus:top-1
+                               peer-focus:text-sm peer-focus:text-indigo-600">
+                        Email
+                    </label>
+                </div>
+
+                <!-- Definimos un campo para introducir la contraseña del usuario. -->
+                <div class="relative">
+                    <input
+                        type="password" id="password" placeholder="" required
+                        class="peer w-full border border-gray-300 text-gray-900 rounded-md px-4 pt-6 pb-2 text-sm
+                               focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                    />
+                    <label
+                        for="password"
+                        class="absolute text-gray-500 text-sm left-4 top-1 transition-all
+                               peer-placeholder-shown:top-4.5 peer-placeholder-shown:text-base
+                               peer-placeholder-shown:text-gray-400 peer-focus:top-1
+                               peer-focus:text-sm peer-focus:text-indigo-600">
+                        Contaseña
+                    </label>
+                </div>
+
+                <!-- Definimos las opciones para mantener la sesión y recuperar la contraseña del usuario. -->
+                <div class="flex justify-between items-center text-sm flex-wrap gap-4 sm:gap-0">
+                    <label class="flex items-center space-x-2">
+                        <input type="checkbox" class="form-checkbox accent-indigo-500 text-indigo-600" />
+                        <span>Recordarme</span>
+                    </label>
+                    <a href="#" class="text-indigo-600 hover:underline">¿Olvidaste tu contraseña?</a>
+                </div>
+
+                <!-- Botón para ejecutar la orden de iniciar sesión dentro de la aplicación web. -->
+                <button
+                    type="submit"
+                    class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition text-sm
+                           sm:text-base">
+                    Iniciar Sesión
+                </button>
+            </form>
+
+            <!-- Definimos un enlace para redirigir al usuario a la página de registro de nuestra aplicación. -->
+            <p class="text-center text-sm text-gray-600">
+                ¿No tienes cuenta?
+                <a th:href="@{register}" class="text-indigo-600 hover:underline">Regístrate</a>
+            </p>
+
+            <!-- Definimos un separador para separar el formulario con los métodos de acceso con Google y GitHub. -->
+            <div class="flex items-center gap-8">
+                <hr class="w-full border-gray-300" />
+                <span class="text-gray-400 text-sm">o</span>
+                <hr class="w-full border-gray-300" />
+            </div>
+
+            <!-- Definimos el acceso y registro usando una cuenta de Google. -->
+            <button
+                    class="w-full border border-gray-300 py-2 rounded-md flex items-center justify-center hover:bg-gray-100
+               transition text-sm sm:text-base">
+                <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-5 h-5 mr-2" alt="Google">
+                Continuar con Google
+            </button>
+
+            <!-- Definimos el acceso y registro usando una cuenta de GitHub. -->
+            <button
+                    class="w-full border border-gray-300 py-2 rounded-md flex items-center justify-center hover:bg-gray-100
+               transition text-sm sm:text-base">
+                <img src="https://www.svgrepo.com/show/512317/github-142.svg" class="w-5 h-5 mr-2" alt="GitHub">
+                Continuar con GitHub
+            </button>
+
+        </div>
+    </div>
+</body>
+</html>

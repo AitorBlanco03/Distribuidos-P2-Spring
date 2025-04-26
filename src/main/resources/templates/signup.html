@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<!--
+    Archivo que define la estructura y el diseño de la página para
+    el registro de nuevos usuarios dentro de nuestra aplicación web.
+
+    - Autor: Aitor Blanco Fernández, abf1005@alu.ubu.es
+    - Versión: 1.2.0, 25 de Abril de 2025.
+-->
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PokeWiki - Registro</title>
+
+  <!-- CDN para utilizar los estilos y diseños de Tailwind CSS sin necesidad de tenerlo instalado. -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen flex flex-col md:flex-row">
+
+  <!-- Dividimos la página en dos mitades. Representamos en su mitad izquierda un fondo de color morado. -->
+  <div class="hidden md:block md:w-1/2 bg-gradient-to-r from-indigo-500 to-purple-600"></div>
+
+  <!-- En la otra mitad iniciamos y definimos el formulario para registro de nuestra aplicación. -->
+  <div class="w-full md:w-1/2 bg-white flex item-center justify-center p-6 md:p-8">
+    <div class="w-full max-w-md space-y-6">
+
+      <!-- Definimos un encabezado donde situaremos el título y el subtítulo de la página. -->
+      <div class="text-center">
+        <h2 class="text-2xl font-bold text-indigo-600">Crear una cuenta</h2>
+        <p class="text-sm text-gray-600">Regístrate para comenzar</p>
+      </div>
+
+      <!-- Definimos el formulario de registro de usuarios dentro de nuestra aplicación. -->
+      <form th:action="@{/register}" th:object="${user}" method="post" class="space-y-6">
+
+        <!-- Definimos un campo para introducir el nombre completo del usuario. -->
+        <div class="relative">
+          <input type="text" id="name" th:field="*{fullName}" placeholder="" required
+                 class="peer w-full border border-gray-300 text-gray-900 rounded-md px-4 pt-6 pb-2 text-sm
+                        focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" />
+          <label for="name"
+                 class="absolute text-gray-500 text-sm left-4 top-1 transition-all
+                        peer-placeholder-shown:top-4.5 peer-placeholder-shown:text-base
+                        peer-placeholder-shown:text-gray-400 peer-focus:top-1
+                        peer-focus:text-sm peer-focus:text-indigo-600">
+            Nombre Completo
+          </label>
+        </div>
+
+        <!-- Definimos un campo para introducor el email del usuario. -->
+        <div class="relative">
+          <input type="email" id="email" th:field="*{email}" placeholder="" required
+                 class="peer w-full border border-gray-300 text-gray-900 rounded-md px-4 pt-6 pb-2 text-sm
+                        focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" />
+          <label for="email"
+                 class="absolute text-gray-500 text-sm left-4 top-1 transition-all
+                        peer-placeholder-shown:top-4.5 peer-placeholder-shown:text-base
+                        peer-placeholder-shown:text-gray-400 peer-focus:top-1
+                        peer-focus:text-sm peer-focus:text-indigo-600">
+            Email
+          </label>
+        </div>
+
+        <!-- Definimos un campo para introducir la contraseña del usuario. -->
+        <div class="relative">
+          <input type="password" id="password" th:field="*{password}" placeholder="" required
+                 class="peer w-full border border-gray-300 text-gray-900 rounded-md px-4 pt-6 pb-2 text-sm
+                        focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" />
+          <label for="password"
+                 class="absolute text-gray-500 text-sm left-4 top-1 transition-all
+                        peer-placeholder-shown:top-4.5 peer-placeholder-shown:text-base
+                        peer-placeholder-shown:text-gray-400 peer-focus:top-1
+                        peer-focus:text-sm peer-focus:text-indigo-600">
+            Contraseña
+          </label>
+        </div>
+
+        <!-- Definimos un campo para confirmar la contraseña del usuario. -->
+        <div class="relative">
+          <input type="password" id="confirm-password" th:field="*{confirmPassword}" placeholder="" required
+                 class="peer w-full border border-gray-300 text-gray-900 rounded-md px-4 pt-6 pb-2 text-sm
+                        focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" />
+          <label for="confirm-password"
+                 class="absolute text-gray-500 text-sm left-4 top-1 transition-all
+                        peer-placeholder-shown:top-4.5 peer-placeholder-shown:text-base
+                        peer-placeholder-shown:text-gray-400 peer-focus:top-1
+                        peer-focus:text-sm peer-focus:text-indigo-600">
+            Confirmar Contraseña
+          </label>
+        </div>
+
+        <!-- Botón para ejecutar la orden de registro de nuevos usuarios dentro de la aplicación web. -->
+        <button
+          type="submit"
+          class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transtion text-sm
+                 sm:text-base">
+          Registrarse
+        </button>
+      </form>
+
+      <!-- Definimos un enlace para redigir al usuario a la página de inicio de sesión. -->
+      <p class="text-center text-sm text-gray-600">
+        ¿Ya tienes una cuenta?
+        <a th:href="@{login}" class="text-indigo-600 hover:underline">Inicia sesión</a>
+      </p>
+
+      <!-- Definimos un separador para separar el formulario con los métodos de acceso con Google y GitHub. -->
+      <div class="flex items-center gap-8">
+        <hr class="w-full border-gray-300" />
+        <span class="text-gray-400 text-sm">o</span>
+        <hr class="w-full border-gray-300" />
+      </div>
+
+      <!-- Definimos el acceso y registro usando una cuenta de Google. -->
+      <button
+        class="w-full border border-gray-300 py-2 rounded-md flex items-center justify-center hover:bg-gray-100
+               transition text-sm sm:text-base">
+        <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-5 h-5 mr-2" alt="Google">
+        Registrarse con Google
+      </button>
+
+      <!-- Definimos el acceso y registro usando una cuenta de GitHub. -->
+      <button
+        class="w-full border border-gray-300 py-2 rounded-md flex items-center justify-center hover:bg-gray-100
+               transition text-sm sm:text-base">
+        <img src="https://www.svgrepo.com/show/512317/github-142.svg" class="w-5 h-5 mr-2" alt="GitHub">
+        Registrarse con GitHub
+      </button>
+
+      <!-- Definimos el mensaje de error. -->
+      <div th:if="${errorMessage}"
+           class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative text-md"
+           role="alert">
+        <span class="block sm:inline" th:text="${errorMessage}"></span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

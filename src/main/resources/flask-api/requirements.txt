@@ -1,0 +1,4 @@
+
+# Definimos las dependencias necesarías para ejecutar la API.
+Flask
+requests
