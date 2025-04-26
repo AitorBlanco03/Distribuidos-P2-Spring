@@ -6,7 +6,7 @@
     el registro de nuevos usuarios dentro de nuestra aplicación web.
 
     - Autor: Aitor Blanco Fernández, abf1005@alu.ubu.es
-    - Versión: 1.1.0, 18 de Abril de 2025.
+    - Versión: 1.2.0, 25 de Abril de 2025.
 -->
 
 <head>
@@ -34,11 +34,11 @@
       </div>
 
       <!-- Definimos el formulario de registro de usuarios dentro de nuestra aplicación. -->
-      <form class="space-y-6">
+      <form th:action="@{/register}" th:object="${user}" method="post" class="space-y-6">
 
         <!-- Definimos un campo para introducir el nombre completo del usuario. -->
         <div class="relative">
-          <input type="text" id="name" placeholder="" required
+          <input type="text" id="name" th:field="*{fullName}" placeholder="" required
                  class="peer w-full border border-gray-300 text-gray-900 rounded-md px-4 pt-6 pb-2 text-sm
                         focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" />
           <label for="name"
@@ -52,7 +52,7 @@
 
         <!-- Definimos un campo para introducor el email del usuario. -->
         <div class="relative">
-          <input type="email" id="email" placeholder="" required
+          <input type="email" id="email" th:field="*{email}" placeholder="" required
                  class="peer w-full border border-gray-300 text-gray-900 rounded-md px-4 pt-6 pb-2 text-sm
                         focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" />
           <label for="email"
@@ -66,7 +66,7 @@
 
         <!-- Definimos un campo para introducir la contraseña del usuario. -->
         <div class="relative">
-          <input type="password" id="password" placeholder="" required
+          <input type="password" id="password" th:field="*{password}" placeholder="" required
                  class="peer w-full border border-gray-300 text-gray-900 rounded-md px-4 pt-6 pb-2 text-sm
                         focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" />
           <label for="password"
@@ -80,7 +80,7 @@
 
         <!-- Definimos un campo para confirmar la contraseña del usuario. -->
         <div class="relative">
-          <input type="password" id="confirm-password" placeholder="" required
+          <input type="password" id="confirm-password" th:field="*{confirmPassword}" placeholder="" required
                  class="peer w-full border border-gray-300 text-gray-900 rounded-md px-4 pt-6 pb-2 text-sm
                         focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" />
           <label for="confirm-password"
@@ -130,6 +130,8 @@
         Registrarse con GitHub
       </button>
 
+      <!-- Definimos el mensaje de error. -->
+      <p th:text="${errorMessage}"></p>
     </div>
   </div>
 </body>
